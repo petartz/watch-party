@@ -1,0 +1,15 @@
+// Configure the plugin to download and use specific Node version
+node {
+    download = true
+    version = "24.1.0"
+}
+
+// Register NpmTask that will do what "npm run build" command does.
+tasks.register('npmBuild', NpmTask) {
+    args = [ 'run', 'build' ]
+}
+
+tasks.register('copyWebApp', Copy) {
+    from "$rootDir/frontend/build"
+    into "$rootDir/build/resources/main/static/."
+}

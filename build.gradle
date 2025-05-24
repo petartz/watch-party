@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		// Spring
 		spring_boot_version = "3.4.2"
+		spring_boot_web_version = "6.2.7"
 	}
 }
 
@@ -9,6 +10,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version "${spring_boot_version}"
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.github.node-gradle.node' version "7.1.0"
 }
 
 group = 'com.simple'
@@ -29,6 +31,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation "org.springframework.boot:spring-boot-starter-web:${spring_boot_version}"
+	implementation "org.springframework:spring-websocket:${spring_boot_web_version}"
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
