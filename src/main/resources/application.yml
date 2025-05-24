@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: watch-party
+
+server:
+  servlet:
+    context-path: /watch-party
+
+port: 8080
