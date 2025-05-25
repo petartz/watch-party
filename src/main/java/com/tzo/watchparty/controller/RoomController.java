@@ -14,6 +14,4 @@ public class RoomController {
     public Map<String, String> createRoom() {
         return Map.of("roomId", UUID.randomUUID().toString());
     }
-
-
 }

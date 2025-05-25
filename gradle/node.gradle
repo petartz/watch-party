@@ -4,12 +4,21 @@ node {
     version = "24.1.0"
 }
 
-// Register NpmTask that will do what "npm run build" command does.
-tasks.register('npmBuild', NpmTask) {
-    args = [ 'run', 'build' ]
+tasks.register('installFrontend', NpmTask) {
+    workingDir = file("${project.projectDir}/frontend")
+    args = ['install']
 }
 
-tasks.register('copyWebApp', Copy) {
-    from "$rootDir/frontend/build"
-    into "$rootDir/build/resources/main/static/."
+tasks.register('buildFrontend', NpmTask) {
+    dependsOn 'installFrontend'
+    workingDir = file("${project.projectDir}/frontend")
+    args = ['run', 'build']
 }
+
+tasks.register('copyFrontend', Copy) {
+    dependsOn 'buildFrontend'
+    from "${project.projectDir}/frontend/dist"
+    into "${project.projectDir}/build/resources/main/static"
+}
+
+processResources.dependsOn copyFrontend
